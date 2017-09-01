@@ -39,6 +39,11 @@ input{
 	width: 55.12%;
 	height: 30px;
 	font-size: 25px;
+	border: 2px solid #939598;
+}
+
+article{
+	width: 55.12%;
 }
 
 input[type="text"]{
@@ -58,4 +63,53 @@ main{
 	margin: 15px auto 10px;
 
 }
+section{
+	text-align:center;
+}
 
+article{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	height: 200px;
+}
+
+h2{
+	color: #6D6E71;
+	display: inline-block;
+	font-size: 30px;
+	text-align:left;
+	margin-left: auto;
+}
+
+h3{
+	color: #6D6E71;
+	display: inline-block;
+}
+
+.icon{
+	height: 50px;
+	width: 50px;
+	display: inline-block;	
+}
+
+.delete{
+	background: url("FEE-ideabox-icon-assets/delete.svg");
+	float: right;
+}
+.delete:hover{
+	background: url("FEE-ideabox-icon-assets/delete-hover.svg");
+}
+.upvote{
+	background: url("FEE-ideabox-icon-assets/upvote.svg");
+}
+.upvote:hover{
+	background: url("FEE-ideabox-icon-assets/upvote-hover.svg");
+}
+.downvote{
+	background: url("FEE-ideabox-icon-assets/downvote.svg");
+}
+.downvote:hover{
+	background: url("FEE-ideabox-icon-assets/downvote-hover.svg");
+
+}
