@@ -2,6 +2,10 @@
 	margin-top: 0px;
 }
 
+head{
+	font-family: 'Open Sans', sans-serif;
+}
+
 .green{
 	color:#00A79D;
 	margin-left: auto;
@@ -40,6 +44,13 @@ input{
 	height: 30px;
 	font-size: 25px;
 	border: 2px solid #939598;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.search-input{
+	margin-bottom: 45px;
 }
 
 article{
@@ -47,7 +58,7 @@ article{
 }
 
 input[type="text"]{
-	font
+	font\\
 }
 
 header{
@@ -56,19 +67,21 @@ header{
 }
 
 main{
-	text-align: center;
-}
-
-.search-input{
-	margin: 15px auto 10px;
 
 }
-section{
-	text-align:center;
+
+h3{
+	font-family: 'Roboto Slab', serif;
+	font-size: 18px;
+}
+
+p{
+	display: inline-block;
+	font-family: 'Roboto Slab', serif;
+	color: #6D6E71;
 }
 
 article{
-	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 	height: 200px;
@@ -79,7 +92,7 @@ h2{
 	display: inline-block;
 	font-size: 30px;
 	text-align:left;
-	margin-left: auto;
+	margin-left: 0;
 }
 
 h3{
@@ -88,9 +101,13 @@ h3{
 }
 
 .icon{
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 30px;
 	display: inline-block;	
+}
+
+hr{
+	background-color: #D1D3D4;
 }
 
 .delete{
@@ -102,14 +119,15 @@ h3{
 }
 .upvote{
 	background: url("FEE-ideabox-icon-assets/upvote.svg");
+	margin-right: 10px;
 }
 .upvote:hover{
 	background: url("FEE-ideabox-icon-assets/upvote-hover.svg");
 }
 .downvote{
 	background: url("FEE-ideabox-icon-assets/downvote.svg");
+	margin-right: 10px;
 }
 .downvote:hover{
 	background: url("FEE-ideabox-icon-assets/downvote-hover.svg");
-
 }
