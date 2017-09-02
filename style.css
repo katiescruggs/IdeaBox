@@ -84,7 +84,7 @@ p{
 article{
 	margin-left: auto;
 	margin-right: auto;
-	height: 200px;
+	height: 180px;
 }
 
 h2{
@@ -108,6 +108,7 @@ h3{
 
 hr{
 	background-color: #D1D3D4;
+	margin-bottom: 5px;
 }
 
 .delete{
