@@ -131,3 +131,30 @@ hr{
 .downvote:hover{
 	background: url("FEE-ideabox-icon-assets/downvote-hover.svg");
 }
+
+@media screen and (max-width: 1000px) {
+	input, article {
+		width: 65%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	input, article {
+		width: 75%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	input, article {
+		width: 85%;
+	}
+}
+
+
+
+
+
+
+
+
+
