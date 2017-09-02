@@ -80,3 +80,24 @@ function clearInputs() {
 	$('.button').prop('disabled', true);
 }
 
+var searchField = document.querySelector('.search-input');
+
+searchField.addEventListener('keyup',searchFiltering);
+
+
+function searchFiltering(){
+	var searchValue = searchField.value.toUpperCase();
+	var searchableItems = $('article');
+
+	for (var i = 0 ; i < $('article').length ; i++){
+		var currentArticle = searchableItems[i];
+		if (currentArticle.innerHTML.toUpperCase().indexOf(searchValue) > -1){
+			searchableItems[i].style.display = "";
+		}else{
+			searchableItems[i].style.display = "none";
+		}
+	}
+
+
+}
+
