@@ -12,8 +12,8 @@ $('.button').on('click', function(e) {
 	var body = $('.body-input').val();
 
 	$('.cardHolder').append(`<article>
-					<h2> ${body} </h2> <div class="icon delete"></div>  <br>
-					<h3> ${title} </h3> <br>
+					<h2 contenteditable="true"> ${body} </h2> <div class="icon delete"></div>  <br>
+					<h3 contenteditable="true"> ${title} </h3> <br>
 					<div class="icon upvote"></div> <div class="icon downvote"> </div>
 					<p> quality: <span class="quality">swill </span></p>
 					<hr>
