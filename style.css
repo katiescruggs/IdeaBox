@@ -35,6 +35,10 @@ h1{
 	color: #939598;
 }
 
+.button:disabled{
+	background-color: grey;
+}
+
 .title-input{
 		margin-bottom: 10px;
 }

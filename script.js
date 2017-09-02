@@ -15,12 +15,11 @@ $('.button').on('click', function(e) {
 					<h2 contenteditable="true"> ${body} </h2> <div class="icon delete"></div>  <br>
 					<h3 contenteditable="true"> ${title} </h3> <br>
 					<div class="icon upvote"></div> <div class="icon downvote"> </div>
-					<p> quality: <span class="quality">swill </span></p>
+					<p> quality: <span class="quality">swill</span></p>
 					<hr>
 				</article>`);
 
 
-	console.log('title= ' + title + ', body= ' + body);
 	clearInputs();
 });
 
@@ -38,16 +37,38 @@ $('.cardHolder').on('click', function(e) {
 		e.target.closest('article').remove();
 		//will need to remove from local storage here as well
 	}
+
 	if(e.target.className === 'icon upvote') {
 		var article = $(e.target.closest('article'));
-		var span = $(article.find('.quality'));
-		if(console.log(span));
-		//I can't figure out how to change the text of span based on what the text says right now
+		var span = $(article).find('.quality');
+		
+		if (span.text() === 'swill'){
+			span.text('plausible');
+		}else {
+			span.text('genius');	
 		}
-	}
+}
+
 	if(e.target.className === 'icon downvote') {
-		console.log('downvote');
-	}
+		var article = $(e.target.closest('article'));
+		var span = $(article).find('.quality');
+		
+		if (span.text() === 'genius'){
+			span.text('plausible');
+		}else {
+			span.text('swill');	
+		}
+}
+		
+		// console.log(span.text());
+
+	// 	if(console.log(span.text)){
+	// 	//I can't figure out how to change the text of span based on what the text says right now
+	// 	}
+	// }
+	// if(e.target.className === 'icon downvote') {
+	// 	console.log('downvote');
+	// }
 
 });
 
