@@ -8,9 +8,17 @@ $('.button').on('click', function(e) {
 	//call Thomas's creation function here 
 	//we could just use ($('.title-input').val(), $('.body-input').val()) as parameters?
 	//or we could assign them to variables in this click function
-
 	var title = $('.title-input').val();
 	var body = $('.body-input').val();
+
+	$('.cardHolder').append(`<article>
+					<h2 contenteditable="true"> ${body} </h2> <div class="icon delete"></div>  <br>
+					<h3 contenteditable="true"> ${title} </h3> <br>
+					<div class="icon upvote"></div> <div class="icon downvote"> </div>
+					<p> quality: <span class="quality">swill </span></p>
+					<hr>
+				</article>`);
+
 
 	console.log('title= ' + title + ', body= ' + body);
 	clearInputs();
