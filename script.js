@@ -30,3 +30,4 @@ function clearInputs() {
 	$('.title-input').focus();
 	$('.button').prop('disabled', true);
 }
+
