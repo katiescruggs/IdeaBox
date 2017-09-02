@@ -31,6 +31,26 @@ $('.title-input, .body-input').on('keyup', function(e) {
 	}
 });
 
+//event listener for .cardHolder section so that we can use event bubbling
+$('.cardHolder').on('click', function(e) {
+	e.preventDefault();
+	if(e.target.className === 'icon delete') {
+		e.target.closest('article').remove();
+		//will need to remove from local storage here as well
+	}
+	if(e.target.className === 'icon upvote') {
+		var article = $(e.target.closest('article'));
+		var span = $(article.find('.quality'));
+		if(console.log(span));
+		//I can't figure out how to change the text of span based on what the text says right now
+		}
+	}
+	if(e.target.className === 'icon downvote') {
+		console.log('downvote');
+	}
+
+});
+
 //return inputs to empty strings, focus to first input, & button to disabled
 function clearInputs() {
 	$('.title-input').val('');
