@@ -25,17 +25,29 @@ $('.button').on('click', function(e) {
 	clearInputs();
 });
 
+var size = 0;
+
+
+StoreCard.prototype.id = function() {
+	var counter = 0;
+	for (key in objOfObj){
+		if (objOfObj.hasOwnProperty(key)){
+			counter++;
+		}}
+	this.id = counter;
+};
+
+
 
 
 function StoreCard(){
-	var id = objOfObj.length + 1;
 	var title = $('.title-input').val();
 	var body = $('.body-input').val();
 
-	this.id = id;
 	this.title = title;
 	this.body = body;
 	this.quality = 'swill';
+	this.id();
 }
 
 function addCard(){
