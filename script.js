@@ -41,25 +41,25 @@ $('.cardHolder').on('click', function(e) {
 	if(e.target.className === 'icon upvote') {
 		var article = $(e.target.closest('article'));
 		var span = $(article).find('.quality');
-		
+
 		if (span.text() === 'swill'){
 			span.text('plausible');
 		}else {
-			span.text('genius');	
+			span.text('genius');
 		}
 }
 
 	if(e.target.className === 'icon downvote') {
 		var article = $(e.target.closest('article'));
 		var span = $(article).find('.quality');
-		
+
 		if (span.text() === 'genius'){
 			span.text('plausible');
 		}else {
-			span.text('swill');	
+			span.text('swill');
 		}
 }
-		
+
 		// console.log(span.text());
 
 	// 	if(console.log(span.text)){
