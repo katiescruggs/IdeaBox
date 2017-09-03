@@ -27,19 +27,6 @@ $('.button').on('click', function(e) {
 
 var size = 0;
 
-
-StoreCard.prototype.id = function() {
-	var counter = 0;
-	for (key in objOfObj){
-		if (objOfObj.hasOwnProperty(key)){
-			counter++;
-		}}
-	this.id = counter;
-};
-
-
-
-
 function StoreCard(){
 	var title = $('.title-input').val();
 	var body = $('.body-input').val();
@@ -50,6 +37,15 @@ function StoreCard(){
 	this.id();
 }
 
+StoreCard.prototype.id = function() {
+	var counter = 0;
+	for (key in objOfObj){
+		if (objOfObj.hasOwnProperty(key)){
+			counter++;
+		}}
+	this.id = counter;
+};
+
 function addCard(){
 	var newCard = new StoreCard();
 	objOfObj[newCard.id] = {
@@ -58,9 +54,6 @@ function addCard(){
 		'quality': newCard.quality
 	}
 }
-
-
-
 
 //input event listeners (enable button only when both inputs have values)
 $('.title-input, .body-input').on('keyup', function(e) {
@@ -99,16 +92,6 @@ $('.cardHolder').on('click', function(e) {
 		}
 }
 
-		// console.log(span.text());
-
-	// 	if(console.log(span.text)){
-	// 	//I can't figure out how to change the text of span based on what the text says right now
-	// 	}
-	// }
-	// if(e.target.className === 'icon downvote') {
-	// 	console.log('downvote');
-	// }
-
 });
 
 //return inputs to empty strings, focus to first input, & button to disabled
@@ -136,7 +119,5 @@ function searchFiltering(){
 			searchableItems[i].style.display = "none";
 		}
 	}
-
-
 }
 
