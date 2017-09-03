@@ -1,6 +1,8 @@
 //on page load
 clearInputs();
 
+var objOfObj = {};
+
 //save button event listener (also runs on Enter key press)
 $('.button').on('click', function(e) {
 	e.preventDefault();
@@ -19,9 +21,34 @@ $('.button').on('click', function(e) {
 					<hr>
 				</article>`);
 
-
+	addCard();
 	clearInputs();
 });
+
+
+
+function StoreCard(){
+	var id = objOfObj.length + 1;
+	var title = $('.title-input').val();
+	var body = $('.body-input').val();
+
+	this.id = id;
+	this.title = title;
+	this.body = body;
+	this.quality = 'swill';
+}
+
+function addCard(){
+	var newCard = new StoreCard();
+	objOfObj[newCard.id] = {
+		'title': newCard.title,
+		'body': newCard.body,
+		'quality': newCard.quality
+	}
+}
+
+
+
 
 //input event listeners (enable button only when both inputs have values)
 $('.title-input, .body-input').on('keyup', function(e) {
