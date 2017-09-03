@@ -10,14 +10,15 @@ $('.button').on('click', function(e) {
 	//call Thomas's creation function here 
 	//we could just use ($('.title-input').val(), $('.body-input').val()) as parameters?
 	//or we could assign them to variables in this click function
-	var title = $('.title-input').val();
-	var body = $('.body-input').val();
+	// var title = $('.title-input').val();
+	// var body = $('.body-input').val();
+	var storeCardValues = new StoreCard();
 
-	$('.cardHolder').append(`<article>
-					<h2 contenteditable="true"> ${title} </h2> <div class="icon delete"></div>  <br>
-					<h3 contenteditable="true"> ${body} </h3> <br>
+	$('.cardHolder').append(`<article id=${storeCardValues.id}>
+					<h2 contenteditable="true"> ${storeCardValues.title} </h2> <div class="icon delete"></div>  <br>
+					<h3 contenteditable="true"> ${storeCardValues.body} </h3> <br>
 					<div class="icon upvote"></div> <div class="icon downvote"> </div>
-					<p> quality: <span class="quality">swill</span></p>
+					<p> quality: <span class="quality">${storeCardValues.quality}</span></p>
 					<hr>
 				</article>`);
 
@@ -53,6 +54,7 @@ function addCard(){
 		'body': newCard.body,
 		'quality': newCard.quality
 	}
+	return newCard;
 }
 
 //input event listeners (enable button only when both inputs have values)
