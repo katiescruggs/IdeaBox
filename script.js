@@ -1,7 +1,27 @@
 //on page load
+
 clearInputs();
 
-var objOfCards = {};
+
+function restoreCards(){
+	var restoredCards = JSON.parse(localStorage.getItem('storedObject')) || {};
+	return restoredCards;
+}
+
+function reCreateCards(){
+	for (key in objOfCards){
+		$('.cardHolder').prepend(`<article id=${key}>
+				<h2 contenteditable="true"> ${objOfCards[key].title} </h2> <div class="icon delete"></div>  <br>
+				<h3 contenteditable="true"> ${objOfCards[key].body} </h3> <br>
+				<div class="icon upvote"></div> <div class="icon downvote"> </div>
+				<p> quality: <span class="quality">${objOfCards[key].quality}</span></p>
+				<hr>
+				</article>`);
+	}
+}
+
+var objOfCards = restoreCards();
+reCreateCards();
 
 //save button event listener (also runs on Enter key press)
 $('.button').on('click', function(e) {
@@ -18,6 +38,7 @@ $('.button').on('click', function(e) {
 				</article>`);
 
 	addCard();
+	setLocalStorage();
 	clearInputs();
 });
 
@@ -64,12 +85,9 @@ $('.cardHolder').on('click', function(e) {
 		var $currentId = $currentArticle.attr('id');
 		var span = $($currentArticle).find('.quality');
 	if(e.target.className === 'icon delete') {
-		for (key in objOfCards){
-			if (objOfCards.hasOwnProperty($currentId)){
-				delete objOfCards[$currentId];
-			}
-		}
+		delete objOfCards[$currentId];
 		$currentArticle.remove();
+		setLocalStorage();
 	}
 
 	if(e.target.className === 'icon upvote') {
@@ -111,8 +129,11 @@ $('.cardHolder').on('click', function(e) {
 		objOfCards[$currentId].body = $($currentArticle).find('h3').text();
 			});
 	}
+	setLocalStorage();
 
 });
+
+
 
 //return inputs to empty strings, focus to first input, & button to disabled
 function clearInputs() {
@@ -140,4 +161,11 @@ function searchFiltering(){
 		}
 	}
 }
+
+function setLocalStorage(){
+	var jsonObject = JSON.stringify(objOfCards);
+	localStorage.setItem('storedObject',jsonObject);
+	console.log('reset local storage value');
+}
+
 
