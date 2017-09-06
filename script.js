@@ -150,14 +150,14 @@ searchField.addEventListener('keyup',searchFiltering);
 
 function searchFiltering(){
 	var searchValue = searchField.value.toUpperCase();
-	var searchableItems = $('article');
+	var searchableItems = $('h2, h3');
 
 	for (var i = 0 ; i < $('article').length ; i++){
 		var currentArticle = searchableItems[i];
 		if (currentArticle.innerHTML.toUpperCase().indexOf(searchValue) > -1){
-			searchableItems[i].style.display = "";
+			$('article')[i].style.display = "";
 		}else{
-			searchableItems[i].style.display = "none";
+			$('article')[i].style.display = "none";
 		}
 	}
 }
