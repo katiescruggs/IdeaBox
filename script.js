@@ -161,11 +161,12 @@ searchField.addEventListener('keyup',searchFiltering);
 
 function searchFiltering(){
 	var searchValue = searchField.value.toUpperCase();
-	var searchableItems = $('h2, h3');
+	var searchableTitle = $('h2');
+	var searchableBody = $('h3');
 
-	for (var i = 0 ; i < $('article').length ; i++){
-		var currentArticle = searchableItems[i];
-		if (currentArticle.innerHTML.toUpperCase().indexOf(searchValue) > -1){
+	for (var i = 0 ; i < $('article').length ; i ++){
+		var currentArticle = searchableTitle[i].innerHTML + searchableBody[i].innerHTML;
+		if (currentArticle.toUpperCase().indexOf(searchValue) > -1){
 			$('article')[i].style.display = "";
 		}else{
 			$('article')[i].style.display = "none";
