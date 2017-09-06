@@ -2,7 +2,6 @@
 
 clearInputs();
 
-
 function restoreCards(){
 	var restoredCards = JSON.parse(localStorage.getItem('storedObject')) || {};
 	return restoredCards;
@@ -13,8 +12,9 @@ function reCreateCards(){
 		$('.cardHolder').prepend(`<article id=${key}>
 				<h2 contenteditable="true"> ${objOfCards[key].title} </h2> <div class="icon delete"></div>  <br>
 				<h3 contenteditable="true"> ${objOfCards[key].body} </h3> <br>
-				<div class="icon upvote"></div> <div class="icon downvote"> </div>
-				<p> quality: <span class="quality">${objOfCards[key].quality}</span></p>
+				<div class="container">
+        <div class="icon upvote"></div> <div class="icon downvote"> </div>
+				<p> quality: <span class="quality">${objOfCards[key].quality}</span></p> </div>
 				<hr>
 				</article>`);
 	}
@@ -32,8 +32,9 @@ $('.button').on('click', function(e) {
 	$('.cardHolder').prepend(`<article id=${storeCardValues.id}>
 					<h2 contenteditable="true"> ${storeCardValues.title} </h2> <div class="icon delete"></div>  <br>
 					<h3 contenteditable="true"> ${storeCardValues.body} </h3> <br>
-					<div class="icon upvote"></div> <div class="icon downvote"> </div>
-					<p> quality: <span class="quality">${storeCardValues.quality}</span></p>
+					<div class="container">
+          <div class="icon upvote"></div> <div class="icon downvote"> </div>
+					<p> quality: <span class="quality">${storeCardValues.quality}</span></p> </div>
 					<hr>
 				</article>`);
 
