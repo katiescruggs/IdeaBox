@@ -1,32 +1,47 @@
 //on page load
+
 clearInputs();
-var objOfObj = {};
+
+function restoreCards(){
+	var restoredCards = JSON.parse(localStorage.getItem('storedObject')) || {};
+	return restoredCards;
+}
+
+function reCreateCards(){
+	for (key in objOfCards){
+		$('.cardHolder').prepend(`<article id=${key}>
+				<h2 contenteditable="true"> ${objOfCards[key].title} </h2> <div class="icon delete"></div>  <br>
+				<h3 contenteditable="true"> ${objOfCards[key].body} </h3> <br>
+				<div class="container">
+        <div class="icon upvote"></div> <div class="icon downvote"> </div>
+				<p> quality: <span class="quality">${objOfCards[key].quality}</span></p> </div>
+				<hr>
+				</article>`);
+	}
+}
+
+var objOfCards = restoreCards();
+reCreateCards();
 
 //save button event listener (also runs on Enter key press)
 $('.button').on('click', function(e) {
 	e.preventDefault();
 
-	//call Thomas's creation function here 
-	//we could just use ($('.title-input').val(), $('.body-input').val()) as parameters?
-	//or we could assign them to variables in this click function
-	var title = $('.title-input').val();
-	var body = $('.body-input').val();
+	var storeCardValues = new StoreCard();
 
-	$('.cardHolder').append(`<article>
-					<h2 contenteditable="true"> ${title} </h2> <div class="icon delete"></div>  <br>
-					<h3 contenteditable="true"> ${body} </h3> <br>
-
+	$('.cardHolder').prepend(`<article id=${storeCardValues.id}>
+					<h2 contenteditable="true"> ${storeCardValues.title} </h2> <div class="icon delete"></div>  <br>
+					<h3 contenteditable="true"> ${storeCardValues.body} </h3> <br>
 					<div class="container">
-					<div class="icon upvote"></div> <div class="icon downvote"> </div>
-					<p> quality: <span class="quality">swill</span></p> </div>
+          <div class="icon upvote"></div> <div class="icon downvote"> </div>
+					<p> quality: <span class="quality">${storeCardValues.quality}</span></p> </div>
 					<hr>
 				</article>`);
 
 	addCard();
+	setLocalStorage();
 	clearInputs();
 });
-
-var size = 0;
 
 function StoreCard(){
 	var title = $('.title-input').val();
@@ -40,8 +55,8 @@ function StoreCard(){
 
 StoreCard.prototype.id = function() {
 	var counter = 0;
-	for (key in objOfObj){
-		if (objOfObj.hasOwnProperty(key)){
+	for (key in objOfCards){
+		if (objOfCards.hasOwnProperty(key)){
 			counter++;
 		}}
 	this.id = counter;
@@ -49,11 +64,12 @@ StoreCard.prototype.id = function() {
 
 function addCard(){
 	var newCard = new StoreCard();
-	objOfObj[newCard.id] = {
+	objOfCards[newCard.id] = {
 		'title': newCard.title,
 		'body': newCard.body,
 		'quality': newCard.quality
 	}
+	return newCard;
 }
 
 //input event listeners (enable button only when both inputs have values)
@@ -66,34 +82,59 @@ $('.title-input, .body-input').on('keyup', function(e) {
 //event listener for .cardHolder section so that we can use event bubbling
 $('.cardHolder').on('click', function(e) {
 	e.preventDefault();
+		var $currentArticle = $(e.target.closest('article'));
+		var $currentId = $currentArticle.attr('id');
+		var span = $($currentArticle).find('.quality');
 	if(e.target.className === 'icon delete') {
-		e.target.closest('article').remove();
-		//will need to remove from local storage here as well
+		delete objOfCards[$currentId];
+		$currentArticle.remove();
+		setLocalStorage();
 	}
 
 	if(e.target.className === 'icon upvote') {
-		var article = $(e.target.closest('article'));
-		var span = $(article).find('.quality');
-
 		if (span.text() === 'swill'){
 			span.text('plausible');
 		}else {
 			span.text('genius');
 		}
-}
+	
+	}
 
 	if(e.target.className === 'icon downvote') {
-		var article = $(e.target.closest('article'));
-		var span = $(article).find('.quality');
-
 		if (span.text() === 'genius'){
 			span.text('plausible');
 		}else {
 			span.text('swill');
-		}
-}
+		}		
+	}
+		objOfCards[$currentId].quality = span.text();
+
+	if($(e.target).is('h2')){
+		$(e.target).on('blur', function(e){
+		e.preventDefault();
+		console.log('blur running');
+		var $currentArticle = $(e.target.closest('article'));
+		var $currentId = $currentArticle.attr('id');
+
+		objOfCards[$currentId].title = $($currentArticle).find('h2').text();
+			});
+	}
+
+	if($(e.target).is('h3')){
+		$(e.target).on('blur', function(e){
+		e.preventDefault();
+		console.log('blur running');
+		var $currentArticle = $(e.target.closest('article'));
+		var $currentId = $currentArticle.attr('id');
+
+		objOfCards[$currentId].body = $($currentArticle).find('h3').text();
+			});
+	}
+	setLocalStorage();
 
 });
+
+
 
 //return inputs to empty strings, focus to first input, & button to disabled
 function clearInputs() {
@@ -110,15 +151,22 @@ searchField.addEventListener('keyup',searchFiltering);
 
 function searchFiltering(){
 	var searchValue = searchField.value.toUpperCase();
-	var searchableItems = $('article');
+	var searchableItems = $('h2, h3');
 
 	for (var i = 0 ; i < $('article').length ; i++){
 		var currentArticle = searchableItems[i];
 		if (currentArticle.innerHTML.toUpperCase().indexOf(searchValue) > -1){
-			searchableItems[i].style.display = "";
+			$('article')[i].style.display = "";
 		}else{
-			searchableItems[i].style.display = "none";
+			$('article')[i].style.display = "none";
 		}
 	}
 }
+
+function setLocalStorage(){
+	var jsonObject = JSON.stringify(objOfCards);
+	localStorage.setItem('storedObject',jsonObject);
+	console.log('reset local storage value');
+}
+
 
