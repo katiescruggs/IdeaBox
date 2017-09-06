@@ -1,6 +1,5 @@
 //on page load
 clearInputs();
-
 var objOfObj = {};
 
 //save button event listener (also runs on Enter key press)
@@ -16,8 +15,10 @@ $('.button').on('click', function(e) {
 	$('.cardHolder').append(`<article>
 					<h2 contenteditable="true"> ${title} </h2> <div class="icon delete"></div>  <br>
 					<h3 contenteditable="true"> ${body} </h3> <br>
+
+					<div class="container">
 					<div class="icon upvote"></div> <div class="icon downvote"> </div>
-					<p> quality: <span class="quality">swill</span></p>
+					<p> quality: <span class="quality">swill</span></p> </div>
 					<hr>
 				</article>`);
 
